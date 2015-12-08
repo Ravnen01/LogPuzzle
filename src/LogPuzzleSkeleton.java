@@ -21,8 +21,9 @@ public class LogPuzzleSkeleton {
 		 */
 		String base_url = extractBaseUrlFromFileName(filename);
 
-		//TODO: Regex pour extraire les bonnes url
-		Pattern urlPattern = Pattern.compile(".*GET\\s(.*/puzzle/.*\\.jpg)");
+		//Regex to exctract url containning picture
+        String regexPatternPictureUrl = ".*GET\\s(.*/puzzle/.*\\.jpg)";
+		Pattern urlPattern = Pattern.compile(regexPatternPictureUrl);
 
 		List<URL> fullUrls = null;
 
@@ -44,7 +45,15 @@ public class LogPuzzleSkeleton {
 	}
 
 	private static String extractBaseUrlFromFileName(String filename) {
-		//TODO
+		//match baseUrl from file name.
+        String regexPatternBaseUrl = "_(\S*)";
+        Pattern matchingBaseUrlPattern = Pattern.compile(regexPatternBaseUrl);
+        Matcher matcher = regexPatternBaseUrl.matcher(filename);
+        if(matcher.find()){
+            return matcher.group(1);
+        }else{
+            return null;
+        }
 	}
 
 	private static List<String> findAllUrlsMatchingPattern(Pattern urlPattern, BufferedReader f)
