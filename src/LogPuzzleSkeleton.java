@@ -21,9 +21,11 @@ public class LogPuzzleSkeleton {
 		 */
 		String base_url = extractBaseUrlFromFileName(filename);
 
+        /*Start of changes*/
 		//Regex to exctract url containning picture
         String regexPatternPictureUrl = ".*GET\\s(.*/puzzle/.*\\.jpg)";
 		Pattern urlPattern = Pattern.compile(regexPatternPictureUrl);
+        /*End of changes*/
 
 		List<URL> fullUrls = null;
 
@@ -45,6 +47,7 @@ public class LogPuzzleSkeleton {
 	}
 
 	private static String extractBaseUrlFromFileName(String filename) {
+        /*Start of changes*/
 		//match baseUrl from file name.
         String regexPatternBaseUrl = "_(\S*)";
         Pattern matchingBaseUrlPattern = Pattern.compile(regexPatternBaseUrl);
@@ -54,28 +57,32 @@ public class LogPuzzleSkeleton {
         }else{
             return null;
         }
+        /*End of changes*/
 	}
 
 	private static List<String> findAllUrlsMatchingPattern(Pattern urlPattern, BufferedReader f)
 			throws IOException {
 		String line;
 		List<String> urls = new ArrayList<String>();
+        /*Start of changes*/
+        //Exctract all url mathing pattern difined it was a picture
 		while((line=f.readLine())!=null){
 			Matcher matcher=urlPattern.matcher(line);
 			if(matcher.find()){
 				urls.add(matcher.group(1));
 			}
 		}
-		//TODO: extraire les URL qui suivent le pattern
+        /*End of changes*/
 		return urls;
 	}
 
 	private static List<String> removeDuplicates(List<String> list) {
-		//TODO: supprimer les doublons
+        /*Start of changes*/
+		//Remove all doublon on the picture list
 		HashSet<String> trieSet=new HashSet<>(list);
 		list=new ArrayList<>(trieSet);
 		return list;
-
+        /*End of changes*/
 	}
 
 	private static void sortUrlList(List<String> urls) {
