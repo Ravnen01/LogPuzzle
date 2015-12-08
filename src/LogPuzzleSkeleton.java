@@ -148,8 +148,10 @@ public class LogPuzzleSkeleton {
 
 	public static void main(String[] args) {
 		List<URL> urlsToDownload = read_urls("place_code.google.com");
-		//TODO: Compléter avec le chemin du dossier destination
-		downloadImages(urlsToDownload, );
+        /*Start of changes*/
+		//Destination path in second param
+		downloadImages(urlsToDownload, "/resultPuzzle");
+        /*End of changes*/
 	}
 
 }
